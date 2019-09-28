@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TesseractWorker } from 'tesseract.js';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class OcrService {
   }
 
   _res : any;
+  
 
   get res(){
     return this._res;
@@ -20,6 +22,16 @@ export class OcrService {
   }
 
   processImage(sourceImageUrl) {
+  const worker = new TesseractWorker();
+
+  worker.recognize(sourceImageUrl, 'eng')
+  .progress(progress => {
+    console.log('progress', progress);
+  }).then(result => {
+    console.log('result', result);
+    this.res = result;
+  });
+
 
   }
 }
