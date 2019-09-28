@@ -1,0 +1,45 @@
+ {
+     "products": [
+         {
+             "id" : "01",
+             "name" : "red bull",
+             "carbon" : "",
+             "fair" : "",
+             "price" : "",
+             "organic" : ""
+         },
+
+         {
+            "id" : "02",
+            "name" : "red bull sugarfree",
+            "carbon" : "",
+            "fair" : "",
+            "price" : "",
+            "organic" : ""
+        },
+        {
+            "id" : "03",
+            "name" : "maya popcorn",
+            "carbon" : "",
+            "fair" : "",
+            "price" : "",
+            "organic" : ""
+        },
+        {
+            "id" : "04",
+            "name" : "kinder pingui",
+            "carbon" : "",
+            "fair" : "",
+            "price" : "",
+            "organic" : ""
+        },
+        {
+            "id" : "05",
+            "name" : "caffe latte",
+            "carbon" : 90,
+            "fair" : 1,
+            "price" : 1.95,
+            "organic" : 0
+        }
+     ]
+ }
