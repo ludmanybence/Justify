@@ -13,7 +13,6 @@ export class LoadingScreenComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setTimeout(()=>{this.loading = false}, 2000);
   } 
 
 }
