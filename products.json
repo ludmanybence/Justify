@@ -3,35 +3,35 @@
          {
              "id" : "01",
              "name" : "red bull",
-             "carbon" : "",
-             "fair" : "",
-             "price" : "",
-             "organic" : ""
+             "carbon" : 170,
+             "fair" : 0,
+             "price" : 1.7,
+             "organic" : 0
          },
 
          {
             "id" : "02",
             "name" : "red bull sugarfree",
-            "carbon" : "",
-            "fair" : "",
-            "price" : "",
-            "organic" : ""
+            "carbon" : 170,
+            "fair" : 0,
+            "price" : 1.49,
+            "organic" : 0
         },
         {
             "id" : "03",
             "name" : "maya popcorn",
-            "carbon" : "",
-            "fair" : "",
-            "price" : "",
-            "organic" : ""
+            "carbon" : 0.24,
+            "fair" : 0,
+            "price" : 1.4,
+            "organic" : 0
         },
         {
             "id" : "04",
             "name" : "kinder pingui",
-            "carbon" : "",
-            "fair" : "",
-            "price" : "",
-            "organic" : ""
+            "carbon" : 102,
+            "fair" : 0,
+            "price" : 1.75,
+            "organic" : 0
         },
         {
             "id" : "05",
