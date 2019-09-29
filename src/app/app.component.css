@@ -1,9 +1,25 @@
 #app{
     width:100%;
     height:100%;
+    background-color: red;
 }
 
 video{
     width:100%;
     height:100%;
+    color: red;
+    background-color: red;
+}
+
+.w3-light-grey w3-round {
+    font-weight: bold;
+    border: 1px solid red;
+    padding: 1em;
+    background-color: red;
+}
+
+.rectangle {
+    height: 50px;
+    width: 100px;
+    background-color: green;
 }
