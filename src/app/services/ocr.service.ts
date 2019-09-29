@@ -43,10 +43,9 @@ export class OcrService {
             data: sourceImage
         })
         .done(function(data) {
-            console.log("wowe");
             console.log(data);
             data = data || "";
-            this.resultSubject.next(data);
+            this.resultSubject.next(data.regions);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             // Display error message.

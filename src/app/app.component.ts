@@ -1,6 +1,7 @@
 import { HelpersService } from './utils/helpers.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {OcrService} from './services/ocr.service';
+import { InfoService } from './services/info.service';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,21 @@ import {OcrService} from './services/ocr.service';
 export class AppComponent implements OnInit {
   title = 'Justify';
 
+  titles = [];
+
   @ViewChild("video",{static:true}) video : ElementRef;
   @ViewChild("frame",{static:false}) frame : ElementRef;
 
-  public constructor(private ocrs: OcrService, private hs: HelpersService) {
+  public constructor(private ocrs: OcrService, private hs: HelpersService, private is: InfoService) {
     this.handleVideo = this.handleVideo.bind(this);
   }
 
   ngOnInit() {
 
     this.ocrs.results.subscribe((res)=>{
-      console.log(res);
+      this.titles=[];
+      console.log(this.titles);
+      this.is.findProducts(res).forEach(prod=> this.titles.push(prod));
     })
 
     let constraints = { video: {facingMode: {exact:"environment"} }};

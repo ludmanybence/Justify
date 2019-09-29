@@ -2,6 +2,9 @@
 <div id="app">
     <div id="video">
       <video #video id="video" width="640" height="480" autoplay="true" playsinline></video>
+      <ul id="titles">
+          <li *ngFor="let title of titles">title</li>
+      </ul>
     </div>
     <div id="scan-overlay">
       <div class="scan-container">
