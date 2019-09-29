@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import * as $ from 'jquery';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,13 @@ export class OcrService {
     this.processImage = this.processImage.bind(this);
   }
 
-  processImage(sourceImageUrl) {
+  resultSubject : Subject<any> = new Subject();
+
+  public get results() : Observable<any>{   
+    return this.resultSubject;
+  }
+
+  processImage(sourceImage) {
         let subscriptionKey = "c7fc33e4aaee4ea1863227ff796f6ba8";
         let endpoint = "https://northeurope.api.cognitive.microsoft.com/";
         if (!subscriptionKey) { throw new Error('Set your environment variables for your subscription key and endpoint.'); }
@@ -25,17 +32,21 @@ export class OcrService {
         // Perform the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
+            processData:false,
             // Request headers.
             beforeSend: function(jqXHR){
-                jqXHR.setRequestHeader("Content-Type","application/json");
+                jqXHR.setRequestHeader("Content-Type","application/octet-stream");
                 jqXHR.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
             },
             type: "POST",
             // Request body.
-            data: '{"url": ' + '"' + sourceImageUrl + '"}',
+            data: sourceImage
         })
         .done(function(data) {
-            
+            console.log("wowe");
+            console.log(data);
+            data = data || "";
+            this.resultSubject.next(data);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             // Display error message.

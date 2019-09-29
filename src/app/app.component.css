@@ -42,3 +42,13 @@
     border-radius:100%;
     margin-bottom:30px;
 }
+
+#scan-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#frame{
+    display: none;
+}

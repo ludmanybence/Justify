@@ -1,3 +1,4 @@
+import { HelpersService } from './utils/helpers.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {OcrService} from './services/ocr.service';
 
@@ -7,44 +8,40 @@ import {OcrService} from './services/ocr.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'justify';
+  title = 'Justify';
 
   @ViewChild("video",{static:true}) video : ElementRef;
-  @ViewChild("frame",{static:true}) frame : ElementRef;
+  @ViewChild("frame",{static:false}) frame : ElementRef;
 
-    public constructor(private ocrs: OcrService) {
-      this.handleVideo = this.handleVideo.bind(this);
-    }
+  public constructor(private ocrs: OcrService, private hs: HelpersService) {
+    this.handleVideo = this.handleVideo.bind(this);
+  }
 
-    n : any = navigator;
+  ngOnInit() {
 
+    this.ocrs.results.subscribe((res)=>{
+      console.log(res);
+    })
 
-    ngOnInit() {
-      let constraints = { video: {facingMode: {exact:"environment"} }};
+    let constraints = { video: {facingMode: {exact:"environment"} }};
 
-
-      if(this.n.getUserMedia){                    // Standard
-        this.n.getUserMedia(constraints, this.handleVideo, this.videoErr);
-    }else if(this.n.webkitGetUserMedia){        // WebKit
-        this.n.webkitGetUserMedia(constraints, this.handleVideo, this.videoErr);
-    }else if(this.n.mozGetUserMedia){        // Firefox
-        this.n.mozGetUserMedia(constraints, this.handleVideo  , this.videoErr);
-    };
       let handleVideo = this.handleVideo;
-        if('mediaDevices' in this.n && this.n.mediaDevices.getUserMedia) {
-          this.n.mediaDevices.getUserMedia(constraints).then(stream=>handleVideo(stream))
-        }
+      if('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia(constraints).then(stream=>handleVideo(stream))
+      }
     }
 
-    handleVideo(stream){
-      this.video.nativeElement.srcObject = stream;
-    }
+  handleVideo(stream){
+    this.video.nativeElement.srcObject = stream;
+  }
 
-    videoErr(e){
-      console.log(e);
-    }
+  videoErr(e){
+    console.log(e);
+  }
 
-    scan(){
-      console.log(this.frame);
-    }
+  scan(){
+    let context = this.frame.nativeElement.getContext('2d');
+    context.drawImage(this.video.nativeElement, 0, 0);
+    this.ocrs.processImage(this.hs.makeblob(this.frame.nativeElement.toDataURL("image/jpeg")));
+  }
 }
