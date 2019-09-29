@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-loading-screen',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoadingScreenComponent implements OnInit {
 
   loading = true;
+  enabled = true;
   logo = "/assets/logo.png";
 
   constructor() { }
@@ -15,4 +16,10 @@ export class LoadingScreenComponent implements OnInit {
   ngOnInit() {
   } 
 
+  enter(){
+    this.loading = false;
+    setTimeout(()=>{
+      this.enabled = false;
+    },1000);
+  }
 }

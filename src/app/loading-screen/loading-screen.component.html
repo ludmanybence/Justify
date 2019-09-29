@@ -1,4 +1,4 @@
-<div [style.opacity]="loading ? 1: 0" id="overlay" >
+<div [style.opacity]="loading ? 1: 0" *ngIf="enabled" id="overlay">
     <img [src]="logo">
-    <button id="start" (click)="this.loading = false">Start Scanning</button>
+    <button id="start" (click)="enter()">Start Scanning</button>
 </div>

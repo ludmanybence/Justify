@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'justify';
 
   @ViewChild("video",{static:true}) video : ElementRef;
+  @ViewChild("frame",{static:true}) frame : ElementRef;
 
     public constructor(private ocrs: OcrService) {
       this.handleVideo = this.handleVideo.bind(this);
@@ -41,5 +42,9 @@ export class AppComponent implements OnInit {
 
     videoErr(e){
       console.log(e);
+    }
+
+    scan(){
+      console.log(this.frame);
     }
 }

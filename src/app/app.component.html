@@ -4,6 +4,7 @@
       <video #video id="video" width="640" height="480" autoplay="true" playsinline></video>
     </div>
     <div id="scan-overlay">
-      <button>Scan</button>
+      <button (click)="scan()">Scan</button>
     </div>
 </div>
+<canvas #frame id="frame-capture-surface"></canvas>
